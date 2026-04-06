@@ -1,0 +1,32 @@
+#!/bin/bash
+#: Filename: roughbook
+#: Date: 2026-04-05/19:32:02
+#: Author: Sauro 
+#: Version: 1.0
+#: Description: Experimental Space
+#: Options: 
+
+
+#Printing a message to the user
+printf "%s" "This is a rough space for experimentation. \nFeel free to add any code snippets or ideas here. \nThis file is not meant for production use and may contain broken code or incomplete ideas. \nUse it as a sandbox for testing and brainstorming. \nHappy coding! \n"
+
+echo Echo statement
+
+printf "%s\n" This is a rough space for experimentation. "I am not sure"
+#Many arguments are printed using the same printf format.
+
+printf "%b\n" "\v"
+
+
+#Expressing floating points using %e
+printf "%e\n" 10.45
+
+for num in {1..10}; do
+    printf "%03d:\n" $num
+done
+
+printf "%b\n" "\v"
+#A width specifier with a decimal fraction specifies the precision of a floating-point number or the maximum width of a string:
+
+printf "%12.4s %9.2f\n" John 2 Jackson 4.579 Walter 2.9
+

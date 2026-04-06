@@ -1,0 +1,13 @@
+#!/bin/bash
+#Filename: pts
+
+directory=$1
+
+if [[ -d $directory ]]; then
+	feh -Frx "$1"
+else
+	feh -Fx "$1"
+fi
+
+#echo "'$1'"
+

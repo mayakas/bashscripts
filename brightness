@@ -1,0 +1,35 @@
+#!/bin/bash
+# Filename: brightness
+# Date: 
+# Author: Sauro Mayaka
+# Version: 1.0
+# Description: Adjust screen brightness
+# Options: None
+
+#Usage: brightness [ value i.e 34 range{0-100} ]
+
+
+if [ $# -ne 1 ] ; then
+	echo "Usage: brightness [value i.e 34 range {0-100} ]"
+	exit 1
+else
+	brightness_value="$1%"
+	if [[ $1 =~ ^([0-9]|[1-9][0-9]|100)$ ]]; then
+		printf "Adjusting brightness "
+		sleep 1
+		printf "."
+		sleep 1 
+		printf "."
+		sleep 1
+		printf ".\n"
+		sleep 1
+		
+		brightnessctl s $brightness_value
+		printf "[+] Brightness Level has been set to : %s\n" $brightness_value
+		exit 0
+	else
+		printf "Invalid Brightness value.\n"
+		echo -e "Usage: \e[1;35m brightness [ value. i.e 1-100 ]\e[1;0m"
+		exit 1
+	fi
+fi

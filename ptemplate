@@ -1,0 +1,33 @@
+#!/bin/bash
+#: Filename: ptemplate
+#: Date: 2026-04-06/15:30:08
+#: Author: Sauro Mayaka 
+#: Version: 1.0
+#: Description: 
+#: Options: 
+
+year=$(date | rev | cut -d ' ' -f 1 | rev)
+months="01-JANUARY:02-FEBRUARY:03-MARCH:04-APRIL:05-MAY:06-JUNE:07-JULY:08-AUGUST:09-SEPTEMBER:10-OCTOBER:11-NOVEMBER:12-DECEMBER"
+IFS=':' read -a months_array <<< $months
+
+create_directories(){
+	mkdir $year; cd $year
+	for month in ${months_array[@]};
+	do
+		mkdir $month
+	done
+}
+
+if [[ $1 ]]; then
+	if [[ $1 =~ ^200[0-9]|201[0-9]|202[0-6]$ ]]; then
+		year=$1
+		create_directories
+		exit 0
+	else
+		printf "Year is Invalid !"
+		exit 1
+	fi
+else
+	create_directories
+	exit 0
+fi

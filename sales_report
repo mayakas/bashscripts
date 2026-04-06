@@ -1,0 +1,36 @@
+#!/bin/bash
+#: Filename: sales_report
+#: Date: 2026-04-05/19:36:26
+#: Author: Sauro 
+#: Version: 1.0
+#: Description: Lesson Implemetation
+#: Options: 
+
+#
+devider==============================
+devider=$devider$devider
+
+## Format strings for printf
+header="\n %-10s %11s %8s %10s\n"
+format=" %-10s %11.2f %8d %10.2f\n"
+
+## Width of Devider
+devider_width=44
+
+## Print the categories
+printf "$header" ITEM "PER UNIT" NUM TOTAL
+
+## Print the devider
+printf "%${devider_width}.${devider_width}s\n" "$devider"
+
+## Print lines for each item
+printf "$format" \
+Chair 79.95 4 319.8 \
+Table 209.99 1 209.99 \
+Armchair 315.49 2 630.98
+
+
+
+
+
+

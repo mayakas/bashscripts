@@ -1,0 +1,25 @@
+#!/bin/bash
+#Filename: arthmetic
+
+read -p 'Enter a number:' number1
+read -p 'Enter another number' number2
+
+#using let
+#let sum=number1+number2
+
+#using []
+sum=$[number1+number2]
+
+#using (())
+#sum=$((number1+number2))
+
+#using expr
+#sum=`expr 3+5` # did not work 
+#sum=$(expr $number1+2)
+
+
+if [[ $number1 && $number2  ]]; then
+	printf "%s +  %s = %s" $number1 $number2 $sum
+else
+	echo "You have not entered both numbers"
+fi
