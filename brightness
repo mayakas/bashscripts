@@ -8,22 +8,31 @@
 
 #Usage: brightness [ value i.e 34 range{0-100} ]
 
+# Function to display loading animation
+loading() {
+    message=$1
+    tput civis
+    trap "tput cnorm; exit" INT TERM EXIT
+    printf "%s" "$message"
+    sleep .5
+    for i in {1..3}; do
+        printf "."
+        sleep 1
+    done
+    sleep .5
+    tput cnorm
+    printf "\n"
+}
 
+# Main script logic
 if [ $# -ne 1 ] ; then
 	echo "Usage: brightness [value i.e 34 range {0-100} ]"
 	exit 1
 else
 	brightness_value="$1%"
 	if [[ $1 =~ ^([0-9]|[1-9][0-9]|100)$ ]]; then
-		printf "Adjusting brightness "
-		sleep 1
-		printf "."
-		sleep 1 
-		printf "."
-		sleep 1
-		printf ".\n"
-		sleep 1
-		
+		loading "Adjusting brightness"
+
 		brightnessctl s $brightness_value
 		printf "[+] Brightness Level has been set to : %s\n" $brightness_value
 		exit 0
