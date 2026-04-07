@@ -8,7 +8,7 @@
 
 
 # interfaces_string=`ip a | grep state | cut -d ':' -f 2 | sed 's/^ *//' | tr '\n' ':'`
-interfaces_string=`ip a | egrep '^[0-9]:' | tr -d ' ' | cut -d ':' -f 2 | tr '\n' ' '`
+interfaces_string=`ip a | egrep '^[0-9]:' | tr -d ' ' | cut -d ':' -f 2 | tr '\n' ' ' | tr 'a-z' 'A-Z'`
 
 number_of_interfaces=`ip a | egrep '^[0-9]:' | wc -l`
 interfaces_array=($interfaces_string)
