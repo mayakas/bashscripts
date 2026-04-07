@@ -14,6 +14,22 @@ script_path="$HOME/.bin/$script_name"
 current_scriptname="$(basename $0)"
 
 
+loading() {
+    message=$1
+    tput civis
+    trap "tput cnorm; exit" INT TERM EXIT
+    printf "%s" "$message"
+    sleep .5
+    for i in {1..3}; do
+        printf "."
+        sleep 1
+    done
+    sleep .5
+    tput cnorm
+    printf "\n"
+}
+
+
 if [[ $# -ne 1 ]]; then
 	#Checking if the user has provided the one script name as an argument
 	printf "Usage: $current_scriptname [ Scriptname ]"
@@ -28,9 +44,8 @@ else
 		read -p "Enter the Author's Name : " script_author
 
 		#Creating the script in the .bin directory
-		printf "Creating script $script_name ... \n"
+		loading "Creating script $script_name"
 		touch $script_path
-		sleep 3
 		
 		#Adding the header to the script
 		printf "%b" "#!/bin/bash\n#: Filename: $script_name\n#: Date: $current_date\n#: Author: $script_author \n#: Version: 1.0\n#: Description: \n#: Options: \n\n">> $script_path
@@ -43,11 +58,10 @@ else
 		fi
 
 		#Adding executable permissions to the script and opening it in the default editor
-		printf "Assigning Executable permissions ... \n"
-		sleep 2
+		loading "Assigning Executable permissions"
 		chmod 755 $script_path
-		printf "Opening script in editor ... \n"
-		sleep 2
+		loading "Opening script in editor"
+
 
 		#Opening the script in the default editor
 		$EDITOR +$ $script_path
