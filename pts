@@ -1,13 +1,19 @@
 #!/bin/bash
-#Filename: pts
+#: Filename: pts
+#: Date: 2026-04-09/15:22:14
+#: Author: Sauro Mayaka 
+#: Version: 1.0
+#: Description: View Images using Feh
+#: Options: 
 
 directory=$1
 
-if [[ -d $directory ]]; then
+if [[ $# -eq 0 ]]; then
+	feh -Fx $(pwd)
+	exit 0
+elif [[ -d $directory ]]; then
 	feh -Frx "$1"
 else
 	feh -Fx "$1"
 fi
-
-#echo "'$1'"
 
